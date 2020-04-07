@@ -16,6 +16,7 @@ def show_webcam():
             detector = skinDetector(img)
             detector.find_skin()
     cv2.destroyAllWindows()
+    cam.release()
 
 def main():
     show_webcam()
