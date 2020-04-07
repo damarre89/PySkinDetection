@@ -84,6 +84,9 @@ class skinDetector(object):
 #================================================================================================================================
 	def show_image(self, title, image):
 		cv2.imshow(title,image)
-		cv2.waitKey(0)
+		k = cv2.waitKey(0)
 		cv2.destroyWindow(title)
+		if k%256 == 27: # esc to exit
+			cv2.destroyAllWindows()
+			exit()
 #================================================================================================================================
