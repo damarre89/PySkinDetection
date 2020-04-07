@@ -6,7 +6,7 @@ def show_webcam():
     cam = cv2.VideoCapture(0)
     while True:
         ret, img = cam.read()
-        cv2.imshow('Cam', img)
+        cv2.imshow('Cam input', img)
         if not ret:
             break
         k = cv2.waitKey(1)
