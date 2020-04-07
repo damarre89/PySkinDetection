@@ -1,6 +1,6 @@
 # Fork update
 
-The source code has been modified to read images from a connected cam. Once the `space` key is pressed, the captured frame is processed and the involved steps to detect human skin are shown, by pressing any key. After the final output is shown, the main cam window resumes. As in the original source code, `esc` key will quit the application.
+The source code has been modified to read images from a connected cam. Once the `space` key is pressed, the captured frame is processed and the involved steps to detect human skin are shown, by pressing any key. `Esc` key will quit the application.
 
 # Skin detection algorithm
 
