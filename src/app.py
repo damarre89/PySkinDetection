@@ -7,10 +7,14 @@ def show_webcam():
     while True:
         ret, img = cam.read()
         cv2.imshow('input', img)
-        detector = skinDetector(img)
-        detector.find_skin()
-        if cv2.waitKey(250) == 27:
-            break # esc to exit
+        if not ret:
+            break
+        k = cv2.waitKey(1)
+        if k%256 == 27: # esc to exit
+            break
+        elif k%256 == 32: # space to capture frame
+            detector = skinDetector(img)
+            detector.find_skin()
     cv2.destroyAllWindows()
 
 def main():

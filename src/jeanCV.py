@@ -10,8 +10,8 @@ import numpy as np
 class skinDetector(object):
 
 	#class constructor
-	def __init__(self, imageName):
-		self.image = cv2.imread(imageName)   
+	def __init__(self, image):
+		self.image = image  
 		if self.image is None:
 			print("IMAGE NOT FOUND")
 			exit(1)                          
@@ -19,6 +19,11 @@ class skinDetector(object):
 		self.HSV_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2HSV)
 		self.YCbCr_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2YCR_CB)
 		self.binary_mask_image = self.HSV_image
+
+		#show steps
+		self.show_image('RGB', self.image)
+		self.show_image('HSV', self.HSV_image)
+		self.show_image('YCbCr', self.YCbCr_image)
 #================================================================================================================================
 	#function to process the image and segment the skin using the HSV and YCbCr colorspaces, followed by the Watershed algorithm
 	def find_skin(self):
@@ -37,9 +42,16 @@ class skinDetector(object):
 
 		#A binary mask is returned. White pixels (255) represent pixels that fall into the upper/lower.
 		mask_YCbCr = cv2.inRange(self.YCbCr_image, lower_YCbCr_values, upper_YCbCr_values)
-		mask_HSV = cv2.inRange(self.HSV_image, lower_HSV_values, upper_HSV_values) 
+		mask_HSV = cv2.inRange(self.HSV_image, lower_HSV_values, upper_HSV_values)
 
 		self.binary_mask_image = cv2.add(mask_HSV,mask_YCbCr)
+
+		#show steps
+		self.show_image('HSV mask', mask_HSV)
+		self.show_image('YCbCr mask', mask_YCbCr)
+		self.show_image('Colour-based mask', self.binary_mask_image)
+
+
 
 #================================================================================================================================
 	#Function that applies Watershed and morphological operations on the thresholded image
@@ -60,13 +72,17 @@ class skinDetector(object):
 		output = cv2.bitwise_and(self.image,self.image,mask = image_mask)
 		
 		#show the images
-		self.show_image(self.image)
-		self.show_image(image_mask)
-		self.show_image(output)
+		#self.show_image(self.image)
+		self.show_image('Final mask', image_mask)
+		self.show_image('Detected skin', output)
+
+		#show input and output in the same window
+		#concat_horizontal = np.concatenate((self.image, output),axis=1)
+		#self.show_image(concat_horizontal)
 
 #================================================================================================================================
-	def show_image(self, image):
-		cv2.imshow("Image",image)
+	def show_image(self, title, image):
+		cv2.imshow(title,image)
 		cv2.waitKey(0)
-		cv2.destroyWindow("Image")
+		cv2.destroyWindow(title)
 #================================================================================================================================
