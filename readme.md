@@ -1,6 +1,6 @@
 # Fork update
 
-The source code has been modified to read images from a connected cam. Once the `space` key is pressed, the captured frame is processed and the involved steps to detect human skin are shown, by pressing any key. `Esc` key will quit the application.
+The source code has been modified to read images from a connected cam. Once the `space` key is pressed, the captured frame is processed and the involved steps to detect human skin are shown, by pressing any key. `Esc` key will quit the application. Obviously, a connected cam is required.
 
 * Usage of the test app: `python3 app.py`
 
