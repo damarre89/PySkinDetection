@@ -62,6 +62,7 @@ class skinDetector(object):
 		ret,image_background = cv2.threshold(dilated_binary_image,1,128,cv2.THRESH_BINARY)  #set all background regions to 128
 
 		image_marker = cv2.add(image_foreground,image_background)   #add both foreground and backgroud, forming markers. The markers are "seeds" of the future image regions.
+		self.show_image('Segmentation seeds', image_marker)
 		image_marker32 = np.int32(image_marker) #convert to 32SC1 format
 
 		cv2.watershed(self.image,image_marker32)
