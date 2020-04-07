@@ -1,3 +1,7 @@
+# Fork update
+
+The source code has been modified to read images from a connected cam. Once the `space` key is pressed, the captured frame is processed and the involved steps to detect human skin are shown, by pressing any key. After the final output is shown, the cam window resumes. As original source code, `esc` key will quit the application.
+
 # Skin detection algorithm
 
 A quick research on the internet shows that the color segmentation is widely used for skin detection (specifically using HSV and YCbCr colorspaces), mostly by its simplicity and performance. However, the skin tones, illumination, and quality is something that could drastically vary between images. For instance, [Kolkur et. al (2016)](https://arxiv.org/ftp/arxiv/papers/1708/1708.02694.pdf),  and [Sha et. al (2009)](https://www.researchgate.net/publication/221365117_Combinatorial_Color_Space_Models_for_Skin_Detection_in_Sub-continental_Human_Images) studied that kind of skin segmentation and discovered completely different optimal thresholds values. 
