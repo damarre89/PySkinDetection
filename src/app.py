@@ -1,6 +1,10 @@
+import sys
 import cv2 # for webcam access
 from jeanCV import skinDetector
 
+def show_img(img):
+    detector = skinDetector(img)
+    detector.find_skin()
 
 def show_webcam():
     cam = cv2.VideoCapture(0)
@@ -19,7 +23,10 @@ def show_webcam():
     cam.release()
 
 def main():
-    show_webcam()
+    if len(sys.argv) < 2:
+        show_webcam()
+    else: 
+        show_img(sys.argv[1])
 
 if __name__ == '__main__':
     main()
